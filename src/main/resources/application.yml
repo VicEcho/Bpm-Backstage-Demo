@@ -1,0 +1,19 @@
+server:
+  port: 8090
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+     ddl-auto: update
+  application:
+    name: BpmApplication
+  profiles:
+      active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bpm_demo?characterEncoding=utf8
+    username: root
+    password: 303303
+#  jpa:
+#    hibernate:
+#      ddl-auto: update

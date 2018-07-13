@@ -1,0 +1,41 @@
+package com.rules;
+import com.bpm.BpmBackstageDemo.model.LeaveMessage
+
+dialect  "java"
+
+rule "check"
+    lock-on-active true
+    when
+      leave: LeaveMessage(days == 0)
+    then
+      leave.setResult("请假时间为0");
+      update(leave)
+end
+rule "TeamLeaderApproval"
+    lock-on-active true
+    when
+      $leave: LeaveMessage(days > 0 && days <=3)
+    then
+      $leave.setResult("请假0到3天，组长审核");
+      $leave.setState(new Long(0));
+      update($leave)
+end
+rule "SupervisorApproval"
+    lock-on-active true
+    when
+      $leave: LeaveMessage(days <= 15 && days > 3)
+    then
+      $leave.setResult("请假3到15天，直接进入经理审核");
+      $leave.setState(new Long(1));
+      update($leave)
+
+end
+rule "DirectPersonnelApproval"
+    lock-on-active true
+    when
+      $leave: LeaveMessage(days > 15)
+    then
+      $leave.setResult("请假超过15天，直接进入人事审核状态");
+      $leave.setState(new Long(2));
+      update($leave)
+end
