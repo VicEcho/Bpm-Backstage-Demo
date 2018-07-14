@@ -1,0 +1,15 @@
+package com.ticketRules;
+dialect  "java"
+
+rule "smallVoucher"
+    when
+    then
+end
+rule "voucher"
+    when
+    then
+end
+rule "bigVoucher"
+    when
+    then
+end

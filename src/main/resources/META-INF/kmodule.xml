@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
-<kbase name="leaveRule"
-       packages="com.rules">
-    <ksession name="ksession-leaveRule"/>
-</kbase>
+    <kbase name="leaveRule"
+           packages="com.leaveRules">
+        <ksession name="ksession-leaveRule"/>
+    </kbase><kbase name="ticket"
+                   packages="com.ticketRules">
+        <ksession name="ksession-ticketRules"/>
+    </kbase>
 </kmodule>
