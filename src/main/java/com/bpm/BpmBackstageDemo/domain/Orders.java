@@ -7,14 +7,13 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order")
-public class Order {
+@Table
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +21,7 @@ public class Order {
 
     private String name;
 
-    private String customer;
+    private Integer money;
 
-    private String money;
+    private String cunstomer;
 }

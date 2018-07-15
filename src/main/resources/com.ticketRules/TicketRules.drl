@@ -1,15 +1,26 @@
 package com.ticketRules;
 dialect  "java"
 
+import com.bpm.BpmBackstageDemo.model.OrderDto;
+
 rule "smallVoucher"
     when
+      $order: OrderDto(money <= 5000)
     then
+      $order.setTicket("50小额现金券");
+      update($order);
 end
 rule "voucher"
     when
+      $order: OrderDto(money > 5000 && money < 10000)
     then
+       $order.setTicket("100中额现金券");
+       update($order);
 end
 rule "bigVoucher"
-    when
-    then
+       when
+         $order: OrderDto(money >= 10000)
+       then
+         $order.setTicket("500大额券");
+         update($order);
 end
